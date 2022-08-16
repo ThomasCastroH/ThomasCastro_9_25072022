@@ -136,11 +136,9 @@ export default class {
     if (this.counter % 2 === 0) {
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)'})
       $(`#status-bills-container${this.index}`).html(cards(filteredBills(bills, getStatus(this.index))))
-      this.counter ++
     } else {
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)'})
       $(`#status-bills-container${this.index}`).html("")
-      this.counter ++
       $(`#status-bills-container${this.index}`).attr("open", false);
     }
 

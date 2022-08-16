@@ -11,7 +11,6 @@ describe("Given that I am a user on login page", () => {
   describe("When I do not fill fields and I click on employee button Login In", () => {
     test("Then It should renders Login page", () => {
       document.body.innerHTML = LoginUI();
-
       const inputEmailUser = screen.getByTestId("employee-email-input");
       expect(inputEmailUser.value).toBe("");
 
@@ -19,6 +18,7 @@ describe("Given that I am a user on login page", () => {
       expect(inputPasswordUser.value).toBe("");
 
       const form = screen.getByTestId("form-employee");
+
       const handleSubmit = jest.fn((e) => e.preventDefault());
 
       form.addEventListener("submit", handleSubmit);
@@ -52,8 +52,8 @@ describe("Given that I am a user on login page", () => {
     test("Then I should be identified as an Employee in app", () => {
       document.body.innerHTML = LoginUI();
       const inputData = {
-        email: "johndoe@email.com",
-        password: "azerty",
+        email: "employee@test.tld",
+        password: "employee",
       };
 
       const inputEmailUser = screen.getByTestId("employee-email-input");
@@ -68,7 +68,6 @@ describe("Given that I am a user on login page", () => {
 
       const form = screen.getByTestId("form-employee");
 
-      // localStorage should be populated with form data
       Object.defineProperty(window, "localStorage", {
         value: {
           getItem: jest.fn(() => null),
@@ -77,7 +76,6 @@ describe("Given that I am a user on login page", () => {
         writable: true,
       });
 
-      // we have to mock navigation to test it
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname });
       };
@@ -163,8 +161,8 @@ describe("Given that I am a user on login page", () => {
       document.body.innerHTML = LoginUI();
       const inputData = {
         type: "Admin",
-        email: "johndoe@email.com",
-        password: "azerty",
+        email: "admin@test.tld",
+        password: "admin",
         status: "connected",
       };
 
@@ -180,7 +178,6 @@ describe("Given that I am a user on login page", () => {
 
       const form = screen.getByTestId("form-admin");
 
-      // localStorage should be populated with form data
       Object.defineProperty(window, "localStorage", {
         value: {
           getItem: jest.fn(() => null),
@@ -189,7 +186,6 @@ describe("Given that I am a user on login page", () => {
         writable: true,
       });
 
-      // we have to mock navigation to test it
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname });
       };

@@ -44,7 +44,7 @@ export default class NewBill {
         }).catch(error => console.error(error))
     } else {
       alert("Please select an image file (jpg, jpeg or png).");
-      this.document.querySelector(`input[data-testid="file"]`).value = null;
+      e.target.value = null;
     }
       
   }
