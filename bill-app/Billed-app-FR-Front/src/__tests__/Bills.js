@@ -69,7 +69,7 @@ describe("Given I am connected as an employee", () => {
   });
 
   describe("When I am on Bills Page and i click on the eye icon", () => {
-    test("Then the receipt that ha been uploaded appears", () => {
+    test("Then the receipt that has been uploaded appears", () => {
       const html = BillsUI({ data: bills });
       $.fn.modal = jest.fn();
       document.body.innerHTML = html;
@@ -91,6 +91,8 @@ describe("Given I am connected as an employee", () => {
     });
   });
 
+
+  // test d'intégration GET
   describe("When an error occurs on API", () => {
     beforeEach(() => {
       jest.spyOn(mockStore, "bills");
