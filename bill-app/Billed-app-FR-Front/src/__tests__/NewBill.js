@@ -84,6 +84,7 @@ describe("Given I am connected as an employee", () => {
       expect(screen.getByText("Mes notes de frais")).toBeTruthy();
     });
   });
+  
   describe("When i download the attached file in the wrong format", () => {
     test("Then i stay on the newbill and a message appears", () => {
 
@@ -111,6 +112,8 @@ describe("Given I am connected as an employee", () => {
       expect(window.alert).toBeTruthy();
     });
   });
+
+
   describe("When i fill out the form and i validate it with the send button", () => {
     test("Then the form must be sent to the invoices page", () => {
 

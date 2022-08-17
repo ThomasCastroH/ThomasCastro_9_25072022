@@ -71,16 +71,14 @@ describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page and i click on the eye icon", () => {
     test("Then the receipt that has been uploaded appears", () => {
       const html = BillsUI({ data: bills });
-      $.fn.modal = jest.fn();
       document.body.innerHTML = html;
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname });
       };
-      const store = null;
       const billsView = new Bills({
         document,
         onNavigate,
-        store,
+        store: null,
         localStorage: window.localStorage,
       });
       const iconeOeil = screen.getAllByTestId("icon-eye")[0];
@@ -91,8 +89,6 @@ describe("Given I am connected as an employee", () => {
     });
   });
 
-
-  // test d'intégration GET
   describe("When an error occurs on API", () => {
     beforeEach(() => {
       jest.spyOn(mockStore, "bills");
