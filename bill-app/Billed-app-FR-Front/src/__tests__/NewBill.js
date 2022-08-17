@@ -23,7 +23,6 @@ describe("Given I am connected as an employee", () => {
 
   describe("When I am on a newbill and the date, ttc and attached file fields are empty", () => {
     test("Then the newbill stay on screen ", () => {
-
       const html = NewBillUI();
       document.body.innerHTML = html;
 
@@ -48,7 +47,6 @@ describe("Given I am connected as an employee", () => {
 
   describe("When i download the attached file in the correct format ", () => {
     test("Then the newbill is sent", () => {
-
       const html = NewBillUI();
       document.body.innerHTML = html;
       const onNavigate = (pathname) => {
@@ -84,10 +82,9 @@ describe("Given I am connected as an employee", () => {
       expect(screen.getByText("Mes notes de frais")).toBeTruthy();
     });
   });
-  
+
   describe("When i download the attached file in the wrong format", () => {
     test("Then i stay on the newbill and a message appears", () => {
-
       const html = NewBillUI();
       document.body.innerHTML = html;
       const onNavigate = (pathname) => {
@@ -113,10 +110,8 @@ describe("Given I am connected as an employee", () => {
     });
   });
 
-
   describe("When i fill out the form and i validate it with the send button", () => {
-    test("Then the form must be sent to the invoices page", () => {
-
+    test("Then the form must be sent to the bills page", () => {
       const html = NewBillUI();
       document.body.innerHTML = html;
       const onNavigate = (pathname) => {
