@@ -71,6 +71,7 @@ describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page and i click on the eye icon", () => {
     test("Then the receipt that has been uploaded appears", () => {
       const html = BillsUI({ data: bills });
+      $.fn.modal = jest.fn();
       document.body.innerHTML = html;
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname });
@@ -86,6 +87,28 @@ describe("Given I am connected as an employee", () => {
       iconeOeil.addEventListener("click", clickIconeOeil(iconeOeil));
       fireEvent.click(iconeOeil);
       expect(screen.getByText("Justificatif")).toBeTruthy();
+    });
+  });
+
+  // test d'intégration GET
+  describe("When I am on Bills Page", () => {
+    test("fetches bills from mock API GET", async () => {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          type: "Employee",
+          email: "a@a",
+        })
+      );
+      const root = document.createElement("div");
+      root.setAttribute("id", "root");
+      document.body.append(root);
+      router();
+
+      window.onNavigate(ROUTES_PATH.Bills);
+      expect(
+        await waitFor(() => screen.getByText("Mes notes de frais"))
+      ).toBeTruthy();
     });
   });
 
@@ -108,7 +131,7 @@ describe("Given I am connected as an employee", () => {
       router();
     });
 
-    test("Then i fetch the invoices in the api and it fails with a 404 error", async () => {
+    test("Then I fetch bills from an API and fails with 404 message error", async () => {
       mockStore.bills.mockImplementationOnce(() => {
         return {
           list: () => {
@@ -122,7 +145,7 @@ describe("Given I am connected as an employee", () => {
       expect(message).toBeTruthy();
     });
 
-    test("Then i fetch the invoices in the api and it fails with a 500 error", async () => {
+    test("Then i fetch messages from an API and fails with 500 message error", async () => {
       mockStore.bills.mockImplementationOnce(() => {
         return {
           list: () => {
